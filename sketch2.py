@@ -7,11 +7,14 @@ x_target = 320
 y_target = 240
 
 def draw_ship(x, y):
-    ellipse(x, y, 40, 20)
+    fill('#C11232')
+    ellipse(x, y, 60, 15)
+    fill('#FAF208')
     triangle(x, y+20, x, y-20, x+80, y) 
 
 def draw_target(x, y):
-    rect(x, y, 40, 40)
+    fill('#CCCCCC')
+    rect(x, y, 20, 40)
 
 def reset_target():
     global x_target, y_target
@@ -19,8 +22,10 @@ def reset_target():
     y_target = random(height - 40) + 20
 
 def hit_target(x, y):
-    global x_target, y_target
-    return y>y_target and y<y_target+40 and x>x_target-60 and x<x_target+20
+    global x_target, y_target, x_speed
+    return (x_speed > 0 
+        and y>y_target and y<y_target+40 
+        and x>x_target-60 and x<x_target+20)
 
 def setup():
     size(640, 480)
@@ -28,7 +33,7 @@ def setup():
 
 def draw():
     global x_ship, y_ship, x_speed, y_speed, x_target, y_target
-    background(200)
+    background(64)
     x_ship = x_ship + x_speed
     if x_ship > width:
         x_ship = 0
