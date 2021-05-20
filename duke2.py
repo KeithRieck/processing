@@ -1,11 +1,11 @@
 def random_angle():
     speed = 3
-    angle = (random(1000)/1000.0) * 6.283
+    angle = (random(1000)/1000.0) * 3.14159 * 2
     dx = speed * cos(angle)
     dy = speed * sin(angle)
     return (angle, dx, dy)
 
-def is_colliding(x1, y1, w1, h1, x2, y2, w2, h2):
+def is_touching(x1, y1, w1, h1, x2, y2, w2, h2):
     if y1+h1 < y2:
         return False
     elif y1 > y2+h2:
@@ -33,7 +33,7 @@ def draw():
         dx = dx * -1
     if (y + img.height) > height or y < 0:
         dy = dy * -1
-    if is_colliding(x, y, img.width, img.height, 320, 240, 150, 150):
+    if is_touching(x, y, img.width, img.height, 320, 240, 150, 150):
         fill("#FFFF00")
     rect(320, 240, 150, 150)
     fill("#FFFFFF")
